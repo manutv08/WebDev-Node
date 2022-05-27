@@ -1,5 +1,10 @@
-const getNotes = function(){
-    return "your notes"
-}
+// 26/05/2022
+const lib = require('./lib')
+lib()
 
-module.exports = getNotes
+// 25/05/2022
+// const getNotes = function(){
+//     return "your notes"
+// }
+
+// module.exports = getNotes
