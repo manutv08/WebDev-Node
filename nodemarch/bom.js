@@ -2,7 +2,7 @@
 // function hello(){
 //     alert('hello')
 // }
-calc = function(){
+calc = (function(){
     return{
         b:5,
         add:function(value){
@@ -10,4 +10,4 @@ calc = function(){
             return v+this.b
         }
     }
-}
+}())
