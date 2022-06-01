@@ -20,3 +20,5 @@ console.log(os.homedir());
 console.log(os.hostname());
 console.log(os.type());
 console.log(os.release());
+console.log(__filename);
+console.log(__dirname);
