@@ -1,6 +1,16 @@
 const http = require('http');
 const fs = require('fs')
 
+const events = require('events')
+const eventEmitter = new events.EventEmitter()
+let count =0;
+function siteCount(){
+   count++; 
+   console.log("site count: " + `${count}`);
+}
+
+eventEmitter.on('connection', siteCount)
+
 const server = http.createServer((req,res)=>{
     // console.log('request received');
     // res.end('request served')
@@ -8,6 +18,8 @@ const server = http.createServer((req,res)=>{
     const url = req.url
     const method=req.method
     if (url === '/'){
+
+    eventEmitter.emit('connection')
         res.setHeader('content-type','text/html') 
         res.write('<html>')
         res.write('<head><title>server page</title></head>')
