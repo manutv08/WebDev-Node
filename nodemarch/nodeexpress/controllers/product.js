@@ -1,0 +1,21 @@
+const products = []
+exports.getAddProducts = (req, res) => {
+    res.render('add-product',{pageTitle: 'Add product'})
+    // res.sendFile(path.join(rootDir,'views','add-product.html'))
+    // res.sendFile(path.join(__dirname,'..','views','add-product.html'))
+    // res.send('<form action="/product" method="post"><input type="text" name="product"><button type= "submit" value="">Add product</button></form>')
+    console.log('first middleware');
+}
+
+exports.postAddProduct = (req, res) => {
+    console.log(req.body);
+    products.push(req.body.productName)
+    res.redirect('/')
+}
+exports.getProducts=(req,res,next)=>{
+    console.log(products);
+    // res.send('home page containing list of products')
+    // res.sendFile(path.join(rootDir,'views','shop.html'))
+    // res.sendFile(path.join(__dirname,'..','views','shop.html'))
+    res.render('shop',{productsList:products,pageTitle: 'Shop'})
+}

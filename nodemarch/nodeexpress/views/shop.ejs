@@ -1,39 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('includes/head.ejs')%>
+    <link rel="stylesheet" href="/css/product.css">
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= pageTitle %>
-    </title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+    <body>
+        <%- include('includes/navigation.ejs')%>
 
-<body>
-    <header class="main_header">
-        <nav class="main_header__nav">
-            <ul class="main_header_item-list">
-                <li class="main_header__item"><a href="/">Shop</a></li>
-                <li class="main_header__item"><a href="/admin/add-product" class="active">Add product</a></li>
-            </ul>
-        </nav>
-    </header>
+            <main>
+                <% if(productsList.length> 0) { %>
+                    <div class="grid">
+                        <% for(let product of productsList) {%>
+                            <article class="card product-item">
+                                <header class="card__header">
+                                    <h1 class="product__title">
+                                        <%= product %>
+                                    </h1>
+                                </header>
+                                <div class="card__image">
+                                    <img src="https://cdn.pixabay.com/photo/2016/11/18/13/47/apple-1834639_960_720.jpg"
+                                        alt="apple" width="200">
+                                </div>
+                                <div class="card__content">
+                                    <h2 class="product__price">Rs.20.00</h2>
+                                    <p class="product__description">An <%= product %> a day keeps your health!</p>
+                                </div>
 
-    <main>
-        <% if(productsList.length> 0) { %>
-            <div>
-                <% for(let product of productsList) {%>
-                <h1>Products list</h1>
-                <h3>Product Name</h3>
-                <p><%= product %></p>
-                <% } %>
-            </div>
-            <% }else { %>
-                <h2>No products found</h2>
-                <%}%>
-    </main>
-</body>
-
-</html>
+                            </article>
+                            <% } %>
+                    </div>
+                    <% }else { %>
+                        <h2>No products found</h2>
+                        <%}%>
+                            <%- include('includes/end.ejs')%>
