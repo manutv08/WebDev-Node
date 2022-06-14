@@ -16,12 +16,12 @@
                                     </h1>
                                 </header>
                                 <div class="card__image">
-                                    <img src="https://cdn.pixabay.com/photo/2016/11/18/13/47/apple-1834639_960_720.jpg"
+                                    <img src="<%= product.imgUrl %>"
                                         alt="apple" width="200">
                                 </div>
                                 <div class="card__content">
-                                    <h2 class="product__price">Rs.20.00</h2>
-                                    <p class="product__description">An <%= product %> a day keeps your health!</p>
+                                    <h2 class="product__price"><%= product.price %></h2>
+                                    <p class="product__description"><%= product.description %> </p>
                                 </div>
 
                             </article>

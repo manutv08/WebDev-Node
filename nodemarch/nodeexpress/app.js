@@ -9,6 +9,7 @@ app.set('view engine', 'ejs')
 app.set('views','views')
 const rootDir = require('./utils/path')
 
+const MongoConnect = require('./models/database')
 const adminRoutes = require('./routes/admin.js')
 const shopRoutes = require('./routes/shop.js')
 const errorController = require('./controllers/error')
@@ -53,4 +54,7 @@ app.use(errorController.get404)
 // const server = http.createServer(app)
 
 // server.listen(3000)
-app.listen(3000,()=>{console.log('server is running on port 3000');})
+MongoConnect(client =>{
+    console.log(client)
+    app.listen(3000,()=>{console.log('server is running on port 3000');})
+})
