@@ -8,5 +8,6 @@ const productController = require('../controllers/product')
 
 router.get('/', productController.getProducts)
 
+router.get('/products/:id',productController.getProduct)
 
 module.exports = router
