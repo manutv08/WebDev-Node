@@ -46,19 +46,27 @@ exports.getEditProduct = (req,res)=>{
 }
 
 exports.postEditProduct = (req,res)=>{
+
     const prodId = req.body.id
-    
     const UproductName = req.body.productName
     const Uprice = req.body.price
     const UimgUrl = req.body.imgUrl
     const Udescription = req.body.description
 
-    Product.findByIdAndUpdate({_id:new mongodb.ObjectId(prodId)},{
-        productName:UproductName,
-        imgUrl:UimgUrl,
-        price:Uprice,
-        description:Udescription
-    })
+    console.log(req.body);
+
+    // const product = new Product
+    // Product.findByIdAndUpdate({_id:new mongodb.ObjectId(prodId)},{
+    const product = new Product(
+        UproductName,
+        UimgUrl,
+        Uprice,
+        Udescription,
+        prodId
+    )
+
+
+    product.save()
     .then(result => {
         console.log('product update successfully')
         res.redirect('/')
