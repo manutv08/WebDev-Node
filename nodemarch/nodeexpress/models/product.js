@@ -13,6 +13,7 @@ module.exports = class Product{
 
         let dbop;
             const db = getDb()
+            console.log('save',this._id)
         if(this._id){
 
             dbop = db.collection('products')
@@ -62,6 +63,14 @@ module.exports = class Product{
         .findOne({_id:new mongodb.ObjectId(prodId)})
         .then(product => {return product})
 
+    }
+
+    static deleteById(prodId){
+        const db = getDb()
+        return db.collection('products')
+        .deleteOne({_id:new mongodb.ObjectId(prodId)})
+        .then(result => {console.log('product Deleted')})
+        .catch(err=>console.error(err))
     }
 }
 

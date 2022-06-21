@@ -62,7 +62,7 @@ exports.postEditProduct = (req,res)=>{
         UimgUrl,
         Uprice,
         Udescription,
-        prodId
+        new mongodb.ObjectId(prodId)
     )
 
 
@@ -72,4 +72,14 @@ exports.postEditProduct = (req,res)=>{
         res.redirect('/')
     })
 
+}
+
+exports.postDeleteProduct = (req,res)=>{
+    const prodId = req.body.id
+    Product.deleteById(prodId)
+    .then(() =>{
+        console.log('delted the product');
+        res.redirect('/')
+    })
+    .catch(err => console.log(err))
 }

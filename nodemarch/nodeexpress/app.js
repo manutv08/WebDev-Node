@@ -8,7 +8,8 @@ app.set('view engine', 'ejs')
 app.set('views','views')
 const rootDir = require('./utils/path')
 
-const MongoConnect = require('./models/database').MongoConnect
+// const MongoConnect = require('./models/database').MongoConnect
+const mongoose = require('mongoose')
 const adminRoutes = require('./routes/admin.js')
 const shopRoutes = require('./routes/shop.js')
 const errorController = require('./controllers/error')
@@ -19,7 +20,13 @@ app.use('/admin',adminRoutes)
 app.use(shopRoutes)
 app.use(errorController.get404)
 
-MongoConnect(client =>{
-    // console.log(client)
-    app.listen(3000,()=>{console.log('server is running on port 3000');})
+mongoose.connect("mongodb+srv://manu:amazing@cluster0.h7gwpdc.mongodb.net/cart?retryWrites=true&w=majority")
+.then(()=>{
+
+    app.listen(3000,()=>{console.log('server is running on port 3000')})
 })
+
+// MongoConnect(client =>{
+//     // console.log(client)
+//     app.listen(3000,()=>{console.log('server is running on port 3000');})
+// })
