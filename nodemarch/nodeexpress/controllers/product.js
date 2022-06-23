@@ -13,12 +13,17 @@ exports.postAddProduct = (req, res) => {
     const imgUrl = req.body.imgUrl
     const description = req.body.description
 
-    const product = new Product(productName,imgUrl,price,description)
+    const product = new Product({
+        productName:productName,
+        imgUrl:imgUrl,
+        price:price,
+        description:description
+    })
     product.save().then(()=>{console.log('products inserted successfully');})
     res.redirect('/')
 }
 exports.getProducts=(req,res,next)=>{
-    Product.fetchAll().then((products)=>{
+    Product.find().then((products)=>{
         res.render('shop',{productsList:products,pageTitle: 'Shop'})
     })
     // console.log(products);
@@ -57,16 +62,14 @@ exports.postEditProduct = (req,res)=>{
 
     // const product = new Product
     // Product.findByIdAndUpdate({_id:new mongodb.ObjectId(prodId)},{
-    const product = new Product(
-        UproductName,
-        UimgUrl,
-        Uprice,
-        Udescription,
-        new mongodb.ObjectId(prodId)
+    Product.findByIdAndUpdate(new mongodb.ObjectId(prodId),
+    {
+        productName:UproductName,
+        imgUrl:UimgUrl,
+        price:Uprice,
+        description:Udescription
+    }
     )
-
-
-    product.save()
     .then(result => {
         console.log('product update successfully')
         res.redirect('/')
@@ -76,7 +79,7 @@ exports.postEditProduct = (req,res)=>{
 
 exports.postDeleteProduct = (req,res)=>{
     const prodId = req.body.id
-    Product.deleteById(prodId)
+    Product.findByIdAndRemove(prodId)
     .then(() =>{
         console.log('delted the product');
         res.redirect('/')
