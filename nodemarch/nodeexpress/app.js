@@ -13,11 +13,15 @@ const mongoose = require('mongoose')
 const adminRoutes = require('./routes/admin.js')
 const shopRoutes = require('./routes/shop.js')
 const errorController = require('./controllers/error')
+
+const userRoutes = require('./routes/user.js')
+
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname,'public')))
 
 app.use('/admin',adminRoutes)
 app.use(shopRoutes)
+app.use(userRoutes)
 app.use(errorController.get404)
 
 mongoose.connect("mongodb+srv://user:<password>@cluster0.h7gwpdc.mongodb.net/cart?retryWrites=true&w=majority")
