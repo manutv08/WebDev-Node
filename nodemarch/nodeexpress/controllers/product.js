@@ -2,6 +2,10 @@
 const Product = require('../models/product')
 const mongodb = require('mongodb')
 exports.getAddProducts = (req, res) => {
+    if(!req.isAuthenticated()){
+        res.redirect('/login')
+    }
+
     res.render('add-product',{pageTitle: 'Add product'})
 }
 
@@ -23,7 +27,13 @@ exports.postAddProduct = (req, res) => {
     res.redirect('/')
 }
 exports.getProducts=(req,res,next)=>{
-    Product.find().then((products)=>{
+    
+    if(!req.isAuthenticated()){
+        res.redirect('/login')
+    }
+
+    Product.find()
+    .then((products)=>{
         res.render('shop',{productsList:products,pageTitle: 'Shop'})
     })
     // console.log(products);

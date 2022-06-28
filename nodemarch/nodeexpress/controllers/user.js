@@ -46,3 +46,10 @@ exports.postRegister =async (req,res)=>{
 
 })
 }
+
+exports.logout = (req,res)=>{
+    req.logout(err=>{
+        if(err) {return err}
+        res.redirect('/login')
+    })
+}

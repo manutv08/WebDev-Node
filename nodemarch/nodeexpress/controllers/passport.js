@@ -28,7 +28,6 @@ authenticateUser))
 
 passport.serializeUser((user, done)=>{done(null, user.id)})
 passport.deserializeUser(async(_id, done)=>{
-
     try {
         const user =  await User.findById({_id})
         done(null, user)
