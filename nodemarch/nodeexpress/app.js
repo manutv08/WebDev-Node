@@ -39,7 +39,7 @@ app.use(shopRoutes)
 app.use(userRoutes)
 app.use(errorController.get404)
 
-mongoose.connect("mongodb+srv://manu:verizone@cluster0.h7gwpdc.mongodb.net/cart?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://user:<password>@cluster0.h7gwpdc.mongodb.net/cart?retryWrites=true&w=majority")
 .then(()=>{
 
     app.listen(3000,()=>{console.log('server is running on port 3000')})
