@@ -21,5 +21,5 @@ console.log('listener1 removed');
 
 eventEmitter.emit('connection')
 
-eventlisteners = events.EventEmitter.listenerCount(eventEmitter,'connection')
-console.log(eventlisteners + 'Listeners are listening');
+eventlisteners = eventEmitter.listenerCount('connection')
+console.log(eventlisteners + ' Listeners are listening');

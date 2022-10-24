@@ -10,7 +10,7 @@ server.on('request',(req,res)=>{
 //         res.end(data)
 //     })
         const rstream = fs.createReadStream('message.txt')
-        // rstream.pipe.res
+        // rstream.pipe(res)
         const wstream = fs.createWriteStream('message2.txt')
         rstream.pipe(wstream)
         // rstream.on('data',(chunk)=>{

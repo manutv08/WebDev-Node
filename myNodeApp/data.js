@@ -27,7 +27,15 @@ fs.readFile("fruitList.json",(err,data)=>{
 
         }
     })
+    // fs.appendFile("fruitList.json", "\n" + JSON.stringify(fruit),(err)=>{
+    //     if(!err){
+    //         console.log("done")
+
+    //     }
+    // })
     }
 })
 
 console.log(__dirname);
+// console.log(__filename);
+// console.log(require);
